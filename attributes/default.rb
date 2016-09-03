@@ -37,14 +37,14 @@ end
 default['prometheus']['log_dir']                                                          = '/var/log/prometheus'
 
 # Prometheus version to build
-default['prometheus']['version']                                                          = '0.15.1'
+default['prometheus']['version']                                                          = '1.0.2'
 
 # Prometheus source repository.
 default['prometheus']['source']['git_repository']                                         = 'https://github.com/prometheus/prometheus.git'
 
 # Prometheus source repository git reference.  Defaults to version tag.  Can
 # also be set to a branch or master.
-default['prometheus']['source']['git_revision']                                           = node['prometheus']['version']
+default['prometheus']['source']['git_revision']                                           = "v#{node['prometheus']['version']}"
 
 # System user to use
 default['prometheus']['user']                                                             = 'prometheus'
@@ -57,11 +57,11 @@ default['prometheus']['use_existing_user']                                      
 
 # Location for Prometheus pre-compiled binary.
 # Default for testing purposes
-default['prometheus']['binary_url']                                                       = 'https://github.com/prometheus/prometheus/releases/download/0.15.1/prometheus-0.15.1.linux-amd64.tar.gz'
+default['prometheus']['binary_url']                                                       = 'https://github.com/prometheus/prometheus/releases/download/v1.0.2/prometheus-1.0.2.linux-amd64.tar.gz'
 
 # Checksum for pre-compiled binary
 # Default for testing purposes
-default['prometheus']['checksum']                                                         = '4b283ce4bf194619d03883a9cf23bd4566a5e5c3cc483b1192a1cd3c4a756118'
+default['prometheus']['checksum']                                                         = 'b42f642090f1313ab49cccaa0c58a91b7a566a911ac7830697f67db060f3d329'
 
 # If file extension of your binary can not be determined by the URL
 # then define it here. Example 'tar.bz2'
@@ -88,7 +88,7 @@ default['prometheus']['flags']['config.file']                                   
 default['prometheus']['flags']['log.level']                                               = 'info'
 
 # Alert manager HTTP API timeout.
-default['prometheus']['flags']['alertmanager.http-deadline']                              = '10s'
+default['prometheus']['flags']['alertmanager.timeout']                                    = '10s'
 
 # The capacity of the queue for pending alert manager notifications.
 default['prometheus']['flags']['alertmanager.notification-queue-capacity']                = 100
@@ -199,14 +199,14 @@ default['prometheus']['flags']['web.user-assets']                               
 default['prometheus']['alertmanager']['binary']                                           = "#{node['prometheus']['dir']}/alertmanager"
 
 # Alertmanager version to build
-default['prometheus']['alertmanager']['version']                                          = '0.0.4'
+default['prometheus']['alertmanager']['version']                                          = '0.4.2'
 
 # Alertmanager source repository.
 default['prometheus']['alertmanager']['git_repository']                                   = 'https://github.com/prometheus/alertmanager.git'
 
 # Alertmanager source repository git reference.  Defaults to version tag.  Can
 # also be set to a branch or master.
-default['prometheus']['alertmanager']['git_revision']                                     = node['prometheus']['alertmanager']['version']
+default['prometheus']['alertmanager']['git_revision']                                     = "v#{node['prometheus']['alertmanager']['version']}"
 
 # Alertmanager configuration file name.
 default['prometheus']['alertmanager']['config.file']                                      = "#{node['prometheus']['dir']}/alertmanager.conf"
